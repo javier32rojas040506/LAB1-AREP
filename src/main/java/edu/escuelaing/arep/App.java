@@ -1,8 +1,9 @@
 package edu.escuelaing.arep;
 
 /**
- * Hello world!
- *
+ * This is a class to prove
+ * @author: Francisco Javier Rojas M
+ * @version: 18/08/2022/A
  */
 public class App 
 {

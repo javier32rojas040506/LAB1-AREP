@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Exchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Search By Name with API 1 (GET)</h1>
+    <form action="/hello">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Stock Name"><br><br>
+        <input type="button" value="Submit" onclick="loadGetMsg()">
+    </form>
+<div id="getrespmsg"></div>
+
+<script>
+            function loadGetMsg() {
+                const mainNode = document.getElementById("getrespmsg");
+                mainNode.innerHTML = "";
+                mainNode.className = "conatiner-data";
+                let nameVar = document.getElementById("name").value;
+                putHeader(mainNode);
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    let data = JSON.parse(this.responseText);
+                    console.log(data);
+                    for (stockMetrics in data) {
+                        let containerStockMetric = document.createElement('div');
+                        containerStockMetric.className = 'Metric';
+                        containerStockMetric.textContent = stockMetrics;
+                        mainNode.appendChild(containerStockMetric);
+                        let metrics = data[stockMetrics];
+                        for (metric in metrics) {
+                            let containerMetric = document.createElement('div');
+                            containerMetric.className = 'Metric';
+                            containerMetric.textContent = `${metrics[metric]}`;
+                            mainNode.appendChild(containerMetric);
+                        }
+                        
+                    }
+                    
+
+                }
+                xhttp.open("GET", "/data?name="+nameVar);
+                xhttp.send();
+            }
+
+            function putHeader(mainNode){
+                let headerMetricDate = document.createElement('div');
+                headerMetricDate.className = 'Metric';
+                headerMetricDate.textContent = "DATE";
+
+                let headerMetricLow = document.createElement('div');
+                headerMetricLow.className = 'Metric';
+                headerMetricLow.textContent = "LOW";
+
+                let headerMetricVolume = document.createElement('div');
+                headerMetricVolume.className = 'Metric';
+                headerMetricVolume.textContent = "VOLUME";
+
+                let headerMetricOpen = document.createElement('div');
+                headerMetricOpen.className = 'Metric';
+                headerMetricOpen.textContent = "OPEN";
+
+                let headerMetricHigh = document.createElement('div');
+                headerMetricHigh.className = 'Metric';
+                headerMetricHigh.textContent = "HIGH";
+
+                let headerMetricClose = document.createElement('div');
+                headerMetricClose.className = 'Metric';
+                headerMetricClose.textContent = "CLOSE";
+
+                headerMetricDate.appendChild(headerMetricLow);
+                headerMetricDate.appendChild(headerMetricVolume);
+                headerMetricDate.appendChild(headerMetricOpen);
+                headerMetricDate.appendChild(headerMetricHigh);
+                headerMetricDate.appendChild(headerMetricClose);
+                mainNode.appendChild(headerMetricDate);
+                mainNode.appendChild(headerMetricLow);
+                mainNode.appendChild(headerMetricVolume);
+                mainNode.appendChild(headerMetricOpen);
+                mainNode.appendChild(headerMetricHigh);
+                mainNode.appendChild(headerMetricClose);
+                
+            }
+        </script>
+
+<h1>Search By Name with API 2 (POST)</h1>
+<form action="/hellopost">
+    <label for="postname">Name:</label><br>
+    <input type="text" id="postname" name="name" placeholder="Stock Name"><br><br>
+    <input type="button" value="Submit" onclick="loadPostMsg(postname)">
+</form>
+
+<div id="postrespmsg"></div>
+
+<script>
+            function loadPostMsg(name){
+                const mainNode = document.getElementById("postrespmsg");
+                mainNode.innerHTML = "";
+                mainNode.className = "conatiner-data post-container";
+                let url = "/databypost?name=" + name.value;
+                let nameVar = document.getElementById("postname").value;
+                fetch (url, {method: 'POST'})
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        putHeaderPost(mainNode, data);
+                        for (stockMetrics in data) {
+                            let containerStockMetric = document.createElement('div');
+                            containerStockMetric.className = 'Metric';
+                            containerStockMetric.textContent = data[stockMetrics];
+                            mainNode.appendChild(containerStockMetric);
+                        }
+                    });
+            }
+            function putHeaderPost(mainNode, data){
+                for (stockMetrics in data) {
+                        let containerStockMetric = document.createElement('div');
+                        containerStockMetric.className = 'Metric';
+                        containerStockMetric.textContent = stockMetrics;
+                        mainNode.appendChild(containerStockMetric);
+                    }
+            }
+        </script>
+</body>
+</html>
