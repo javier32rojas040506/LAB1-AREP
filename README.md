@@ -15,6 +15,8 @@ Usted debe construir una aplicación para consultar el mercado de valores de las
 La aplicación recibirá el identificador de una acción, por ejemplo “MSFT” para Microsoft y deberá mostrar el histórico
 de la valoración intra-día, diaria, semanal y mensual.
 
+---
+
 ## Iniciando
 
 puede clonar y alistar el repo con el siguiente comando
@@ -22,50 +24,34 @@ puede clonar y alistar el repo con el siguiente comando
 ```
   git clone https://github.com/javier32rojas040506/LAB1-AREP.git
 ```
+```
+  cd LAB1-AREP
+```
 ### Prerequisites
 
-What things you need to install the software and how to install them
+es necesario tener java 8 y maven pruebello con el siguiente comando
+![](.README_images/f8ca9a5b.png)
 
 ```
-Give examples
+mvn --version
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+puede habilitar su IDE para correr el programa con maven en caso de InteliJ
+![](.README_images/6385faf8.png)
+y darler run a la clase main. Por otro lado tambien puede corre el proyecto con los siguientes comandos
 
-Say what the step will be
-
+![](.README_images/6d2eb383.png)
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+mvn package
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Y luego
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+![](.README_images/b97d145b.png)
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+java -cp "target/classes;target/dependency/*" edu.escuelaing.arep.SparkWebApp
 ```
 
 ## Deployment
@@ -74,39 +60,22 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Spark](https://sparkjava.com/documentation#views-and-templates) - Framework API
+* [Maven](https://maven.apache.org/) - Manejo de dependencias
+* [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript) - Statics files (frontend)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Francisco Javier Rojas** - *lab01 AERP* - [javier32rojas040506](https://github.com/javier32rojas040506)
 
 
+---
+
+### DESCRIPCIÓN  DE LA ARQUITECTURA:
 
 ![](.README_images/18e55e62.png)
 
-#### DESCRIPCIÓN  DE LA ARQUITECTURA:
 ##### Requerimientos:
 1) El cliente Web debe ser un cliente asíncrono que use servicios REST desplegados en Heroku y use Json como formato 
 para los mensajes.
