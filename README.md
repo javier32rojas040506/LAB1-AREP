@@ -6,6 +6,10 @@
 ### AREP G1
 ### Fecha: 18 de Agosto de 2022
 
+[Heroku]()
+
+[GitHub]()
+
 ## PROYECTO:
 Esta aplicacion consta de una funcionalidad en la cual se pueda visualizar las acciones del mercado valores esto soportado en
 una arquitectura que es el enfoque de la aplicacion de este proyecto, por esto se  debe dar solucion al problema.
@@ -53,10 +57,6 @@ Y luego
 ```
 java -cp "target/classes;target/dependency/*" edu.escuelaing.arep.SparkWebApp
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
