@@ -7,6 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -18,7 +22,7 @@ public class ActionsStock {
     //User agent to get data via rest
     private static final String USER_AGENT = "Mozilla/5.0";
     //Cache to improve the performance of the server
-    private static Map<String, JSONObject> cacheData = new HashMap<String, JSONObject>();
+    private static ConcurrentMap<String, JSONObject> cacheData = new ConcurrentHashMap<String, JSONObject>();
 
     /**
      * This method get the data to API and parse it to respond petitions
@@ -58,7 +62,13 @@ public class ActionsStock {
             in.close();
             jsonObj = new JSONObject(responseString.toString());
             if(JSON_KEY != null) {
-                 jsonObj = jsonObj.getJSONObject(JSON_KEY);
+                System.out.println("JSON object key");
+                try{
+                    jsonObj = jsonObj.getJSONObject(JSON_KEY);
+                }catch (JSONException e){
+                    return "La API SOLICITAD DICE:" + jsonObj.toString();
+                }
+
             }
             cacheData.put(URL_API, jsonObj);
             System.out.println("Respueta del Servidor en JSON:");

@@ -6,9 +6,10 @@
 ### AREP G1
 ### Fecha: 18 de Agosto de 2022
 
-[Heroku]()
 
-[GitHub]()
+[Heroku](https://fierce-wave-42107.herokuapp.com/)
+
+[GitHub](https://github.com/javier32rojas040506/LAB1-AREP)
 
 ## PROYECTO:
 Esta aplicacion consta de una funcionalidad en la cual se pueda visualizar las acciones del mercado valores esto soportado en
