@@ -184,6 +184,14 @@ Close.
   ~~~
   ![](.README_images/91e04351.png)
   ![](.README_images/7a894d98.png)
+
+  ~~~
+  Tambien es posible extender la aplicacion para parsear y manejar las peticiones a la api de vairas maneras, ya que 
+  estamos usando es principio OpenClose y Inversion de Dependencias mediante la interface ActionStock. Puede agrgar una
+  clase que implenete a esta interface 
+  ~~~
+  ![](.README_images/39608547.png)
+  ![](.README_images/318725ff.png)
   ~~~
     ahora puede mapearlo al gusto en el html de la aplicacion o incluso incorporrarlo a
   su propia API

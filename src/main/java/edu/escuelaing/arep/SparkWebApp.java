@@ -1,5 +1,8 @@
 package edu.escuelaing.arep;
 
+import edu.escuelaing.arep.services.ActionsStockForAlphaAPI;
+import edu.escuelaing.arep.services.ActionsStockForPolygonAPI;
+
 import static spark.Spark.*;
 
 /**
@@ -22,22 +25,25 @@ public class SparkWebApp {
         port(getPort());
         //Defining the statics files (front)
         staticFiles.location("/public");
-        //endpont example in spark web
+        //instancing the services
+        ActionsStock api1 = new ActionsStockForAlphaAPI();
+        ActionsStock api2 = new ActionsStockForPolygonAPI();
+        //end point example in spark web
         get("/hello", (request, response) -> {
             String name = request.queryParams("name");
             return "Hello Heroku :) " + name;
         });
-        //endponit to get data via GET
+        //end point to get data via GET
         get("/data", (request, response) -> {
             response.type("application/json");
             String name = request.queryParams("name");
-            return ActionsStock.getStockByName(name, API_URL_1, "Time Series (5min)");
+            return api1.getStockByName(name, API_URL_1, "Time Series (5min)");
         });
-        //endponit to get data via POST
+        //end point to get data via POST
         post("/databypost", "application/json",
                 (request, response) -> {
                     String name = request.queryParams("name");
-                    return ActionsStock.getStockByName(name, API_URL_2, null);
+                    return api2.getStockByName(name, API_URL_2, null);
         });
 
     }
